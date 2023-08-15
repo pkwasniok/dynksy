@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Bojler",
-    "slug": "Bojler",
+    "name": "Dynksy",
+    "slug": "dynksy",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -15,16 +15,23 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.pkwasniok.Dynksy"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.pkwasniok.Dynksy"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "c02bbd0f-b949-4c45-935b-570c4929dc12"
+      }
     }
   }
 }
