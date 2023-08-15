@@ -1,7 +1,7 @@
 import { View } from "react-native";
-import { Switch, PowerMeter } from "./features/components";
-
-import { FontAwesome5 } from "@expo/vector-icons";
+import { Icon } from "./features/ui";
+import { PowerMeterWidget } from "./features/power-meter/PowerMeterWidget";
+import { PowerSwitchCard } from "./features/power-switch/PowerSwitchCard";
 
 import { useRelay } from "./tasmota";
 import { useFoxessCloud } from "./foxess";
@@ -15,30 +15,24 @@ export const HomeView = () => {
   return (
     <View style={{ display: "flex", flexDirection: "column" }}>
       <View style={{ padding: 20, display: "grid", gap: 20 }}>
-        <PowerMeter controller={foxessCloud} minValue={0} maxValue={8000} />
+        <PowerMeterWidget controller={foxessCloud} />
 
-        <Switch
+        <PowerSwitchCard
           name="Przekaźnik 1"
           controller={relay1}
-          leftIcon={(state) => (
-            <FontAwesome5 name="power-off" size={22} color="#ffffff" />
-          )}
+          leftIcon={() => <Icon name="power-off" />}
         />
 
-        <Switch
+        <PowerSwitchCard
           name="Przekaźnik 2"
           controller={relay2}
-          leftIcon={() => (
-            <FontAwesome5 name="power-off" size={22} color="#ffffff" />
-          )}
+          leftIcon={() => <Icon name="power-off" />}
         />
 
-        <Switch
+        <PowerSwitchCard
           name="Dioda LED"
           controller={relay3}
-          leftIcon={() => (
-            <FontAwesome5 name="lightbulb" size={22} color="#ffffff" />
-          )}
+          leftIcon={() => <Icon name="lightbulb" />}
         />
       </View>
     </View>

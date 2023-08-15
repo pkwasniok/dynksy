@@ -3,21 +3,11 @@
     "version": ">= 4.1.2"
   },
   "build": {
-    "development": {
+    "preview": {
       "distribution": "internal",
       "android": {
-        "gradleCommand": ":app:assembleDebug"
-      },
-      "ios": {
-        "buildConfiguration": "Debug"
+        "buildType": "apk"
       }
-    },
-    "preview": {
-      "distribution": "internal"
-    },
-    "production": {}
-  },
-  "submit": {
-    "production": {}
+    }
   }
 }

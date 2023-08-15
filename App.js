@@ -1,13 +1,10 @@
 import { useState } from "react";
-import { StatusBar } from "expo-status-bar";
-import { SafeAreaView, StyleSheet, View } from "react-native";
 import { useFonts } from "expo-font";
 
-import { NavigationBar, NavigationItem } from "./features/navigation";
+import { SafeAreaView, StyleSheet, View } from "react-native";
+import { StatusBar } from "expo-status-bar";
 import { HomeView } from "./HomeView";
 import { DevicesView } from "./DevicesView";
-
-import { FontAwesome5 } from "@expo/vector-icons";
 
 export default function App() {
   const [loaded] = useFonts({
@@ -28,34 +25,6 @@ export default function App() {
           {currentView == "home" && <HomeView />}
           {currentView == "devices" && <DevicesView />}
         </View>
-
-        {/* <NavigationBar>
-          <NavigationItem
-            name="Strona główna"
-            icon={(active) => (
-              <FontAwesome5
-                name="home"
-                size={22}
-                color={active ? "#ffffff" : "#bcbcbc"}
-              />
-            )}
-            isActive={currentView == "home"}
-            onPress={() => setView("home")}
-          />
-
-          <NavigationItem
-            name="Urządzenia"
-            icon={(active) => (
-              <FontAwesome5
-                name="th-large"
-                size={22}
-                color={active ? "#ffffff" : "#bcbcbc"}
-              />
-            )}
-            isActive={currentView == "devices"}
-            onPress={() => setView("devices")}
-          />
-        </NavigationBar> */}
       </View>
     </SafeAreaView>
   );

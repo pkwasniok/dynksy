@@ -68,6 +68,12 @@ export const useFoxessCloud = (username, password) => {
 
     if (response.errno != 0) {
       console.error("FoxessCloud error", response);
+
+      // Invalid or illegal token
+      if (response.errno == 41809 || response.errno == 41808) {
+        setToken(undefined);
+      }
+
       setStatus("error");
       return;
     }
