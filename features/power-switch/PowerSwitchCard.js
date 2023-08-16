@@ -1,12 +1,23 @@
 import { View, Text } from "react-native";
 import { Heading, Card } from "../ui";
 
-export const PowerSwitchCard = ({ name, controller, leftIcon, rightIcon }) => {
+export const PowerSwitchCard = ({
+  name,
+  controller,
+  leftIcon,
+  rightIcon,
+  nested,
+}) => {
   return (
     <Card
       onPress={controller.toggle}
+      nested={nested}
       style={{
-        backgroundColor: controller.data.state ? "#1DD3B0" : "#135B67",
+        backgroundColor: controller.data.state
+          ? "#1DD3B0"
+          : !nested
+          ? "#135B67"
+          : "#0E3B43",
       }}
     >
       <View

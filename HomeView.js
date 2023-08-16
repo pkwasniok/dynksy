@@ -1,39 +1,33 @@
 import { View } from "react-native";
-import { Icon } from "./features/ui";
+import { Icon, Card, ExpandableCard } from "./features/ui";
 import { PowerMeterWidget } from "./features/power-meter/PowerMeterWidget";
 import { PowerSwitchCard } from "./features/power-switch/PowerSwitchCard";
+import { DriverLicenseStatusWidget } from "./features/driver-license-status";
 
 import { useRelay } from "./tasmota";
 import { useFoxessCloud } from "./foxess";
+import { useInfocar } from "./infocar";
 
 export const HomeView = () => {
   const relay1 = useRelay("192.168.1.132", "POWER1");
-  const relay2 = useRelay("192.168.1.132", "POWER2");
-  const relay3 = useRelay("192.168.1.132", "POWER3");
   const foxessCloud = useFoxessCloud("kwasniok", "Annabelle14!");
+  const infocar = useInfocar("Patryk", "Kwaśniok", "12330 46060 91783 25122");
 
   return (
     <View style={{ display: "flex", flexDirection: "column" }}>
       <View style={{ padding: 20, display: "grid", gap: 20 }}>
         <PowerMeterWidget controller={foxessCloud} />
 
-        <PowerSwitchCard
-          name="Przekaźnik 1"
-          controller={relay1}
-          leftIcon={() => <Icon name="power-off" />}
-        />
+        <ExpandableCard title="Łazienka" icon={<Icon name="bath" />}>
+          <PowerSwitchCard
+            name="Bojler"
+            controller={relay1}
+            leftIcon={() => <Icon name="thermometer-half" />}
+            nested
+          />
+        </ExpandableCard>
 
-        <PowerSwitchCard
-          name="Przekaźnik 2"
-          controller={relay2}
-          leftIcon={() => <Icon name="power-off" />}
-        />
-
-        <PowerSwitchCard
-          name="Dioda LED"
-          controller={relay3}
-          leftIcon={() => <Icon name="lightbulb" />}
-        />
+        <DriverLicenseStatusWidget controller={infocar} />
       </View>
     </View>
   );

@@ -41,7 +41,7 @@ export const PowerMeterCard = ({
             gap: 15,
           }}
         >
-          <Icon name="bolt" />
+          <Icon name="solar-panel" />
 
           <View
             style={{
@@ -50,7 +50,7 @@ export const PowerMeterCard = ({
               flexDirection: "column",
             }}
           >
-            <Heading>Produkcja energii</Heading>
+            <Heading>Elektrownia słoneczna</Heading>
 
             <Text
               style={{
@@ -59,7 +59,7 @@ export const PowerMeterCard = ({
                 color: "#ffffff",
               }}
             >
-              {controller.data.currentPower} W
+              Aktualna moc: {controller.data.currentPower} W
             </Text>
           </View>
         </View>

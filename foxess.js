@@ -36,6 +36,7 @@ export const useFoxessCloud = (username, password) => {
     currentMonthPowerGeneration: 0,
     currentYearPowerGeneration: 0,
     totalPowerGeneration: 0,
+    lastSync: undefined,
   });
 
   const sync = async () => {
@@ -92,6 +93,7 @@ export const useFoxessCloud = (username, password) => {
       totalPowerGeneration: Math.round(
         response.result.cumulate.generation * 1000
       ),
+      lastSync: new Date(),
     });
 
     setStatus("online");
@@ -104,7 +106,7 @@ export const useFoxessCloud = (username, password) => {
   useEffect(() => {
     const interval = setInterval(() => {
       sync();
-    }, 15000);
+    }, 60000);
 
     return () => clearInterval(interval);
   }, []);

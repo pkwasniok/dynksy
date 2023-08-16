@@ -11,36 +11,44 @@ export const PowerMeterWidget = ({ controller }) => {
     return (
       <PowerMeterCard
         controller={controller}
-        onLongPress={() => setExpand(!isExpanded)}
+        onPress={() => setExpand(!isExpanded)}
       />
     );
   }
 
   return (
-    <Card onLongPress={() => setExpand(!isExpanded)}>
+    <Card>
       <PowerMeterCard
         controller={controller}
-        onLongPress={() => setExpand(!isExpanded)}
+        onPress={() => setExpand(!isExpanded)}
         nested
       />
 
-      <View style={styles.informationRow}>
-        <Text style={styles.labelText}>Dzisiaj</Text>
-        <Text style={styles.valueText}>
-          {(controller.data.currentDayPowerGeneration / 1000).toFixed(1)} kWh
-        </Text>
-      </View>
+      <Card
+        title={`${(controller.data.currentDayPowerGeneration / 1000).toFixed(
+          1
+        )} kWh`}
+        subtitle="Produkcja dzisiaj"
+        nested
+      ></Card>
 
-      <View style={styles.informationRow}>
-        <Text style={styles.labelText}>W tym miesiącu</Text>
-        <Text style={styles.valueText}>
-          {(controller.data.currentMonthPowerGeneration / 1000).toFixed(1)} kWh
-        </Text>
-      </View>
+      <Card
+        title={`${(controller.data.currentMonthPowerGeneration / 1000).toFixed(
+          1
+        )} kWh`}
+        subtitle="Produkcja w tym miesciącu"
+        nested
+      ></Card>
 
       <View style={styles.chipsRow}>
-        <Chip icon={<Icon name="chart-pie" small />}>Więcej informacji</Chip>
-        <Chip icon={<Icon name="cog" small />}>Ustawienia</Chip>
+        <Chip icon={<Icon name="sync-alt" small />} onPress={controller.sync}>
+          Odśwież dane
+        </Chip>
+
+        <Text style={{ color: "#ffffff" }}>
+          {new Date(controller.data.lastSync).toLocaleDateString("pl")}{" "}
+          {new Date(controller.data.lastSync).toLocaleTimeString("pl")}
+        </Text>
       </View>
     </Card>
   );
@@ -66,6 +74,8 @@ const styles = StyleSheet.create({
   chipsRow: {
     display: "flex",
     flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     gap: 10,
   },
 });

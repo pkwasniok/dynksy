@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useFonts } from "expo-font";
 
-import { SafeAreaView, StyleSheet, View } from "react-native";
+import { SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { HomeView } from "./HomeView";
 import { DevicesView } from "./DevicesView";
@@ -22,8 +22,10 @@ export default function App() {
 
       <View style={{ flex: 1, display: "flex", flexDirection: "column" }}>
         <View style={{ flex: 1 }}>
-          {currentView == "home" && <HomeView />}
-          {currentView == "devices" && <DevicesView />}
+          <ScrollView>
+            {currentView == "home" && <HomeView />}
+            {currentView == "devices" && <DevicesView />}
+          </ScrollView>
         </View>
       </View>
     </SafeAreaView>
